@@ -4,7 +4,9 @@ pool:
 jobs:
   - job: Local_Scan
     steps:
-      - script: docker run --detach --publish 8080:80 nginx
+      - script: docker build -t dvga .
+                docker run --detach --publish 5013 nginx
+                docker run -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dvga
         displayName: Start Nginx
       - script: >
           docker run -v $(pwd):/hawk:rw -t
