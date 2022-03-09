@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  # Fire up the app to test, nginx_test
+  nginx_test:
+    image: nginx
+
+  # Fire up hawkscan to scan the test app (nginx_test)
+  hawkscan:
+    image: stackhawk/hawkscan
+    environment:
+      API_KEY: "${HAWK_API_KEY}"
+    volumes:
+      - type: bind
+        source: .
+        target: /hawk
+    tty: true
+    depends_on:
+      - nginx_test
