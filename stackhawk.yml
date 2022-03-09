@@ -1,4 +1,4 @@
 app:
   applicationId: 3bcc060a-2c1c-4c6f-9699-57ab0c0f8436
-  host: http://nginx_test
+  host: http://localhost:8080
   env: Development
