@@ -4,7 +4,7 @@ pool:
 jobs:
   - job: Local_Scan
     steps:
-      - script: >
+      - script: docker run --detach --publish 5013 nginx
                 docker pull dolevf/dvga 
                 docker run --publish 5013:5013 -e WEB_HOST=0.0.0.0 dolevf/dvga
         displayName: Start Nginx
