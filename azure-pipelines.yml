@@ -15,8 +15,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: 
-            docker build -t dvga .
-            docker run dvga
+            chmod -R 777  ./
+            docker  pull dolevf/dvga
+            docker run dolevf/dvga
             docker run -v $(pwd):/hawk:rw -t -e API_KEY="${HAWK_API_KEY}" stackhawk/hawkscan
   displayName: Run HawkScan
   env:
