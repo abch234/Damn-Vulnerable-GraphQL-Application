@@ -5,7 +5,7 @@ jobs:
   - job: Local_Scan
     steps:
       - script: docker pull dolevf/dvga
-                docker run -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dolevf/dvga
+                docker run -t 5013 dolevf/dvga
         displayName: Start Nginx
       - script: >
           docker run -v $(pwd):/hawk:rw -t
