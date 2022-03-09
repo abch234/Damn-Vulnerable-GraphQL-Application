@@ -1,11 +1,10 @@
 pool:
   vmImage: 'ubuntu-latest'
-
+#docker run --detach --publish 5013 nginx
 jobs:
   - job: Local_Scan
     steps:
-      - script: docker build -t dvga .
-                docker run --detach --publish 5013 nginx
+      - script: docker build -t dvga . 
                 docker run -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dvga
         displayName: Start Nginx
       - script: >
