@@ -17,9 +17,7 @@ steps:
     script: 
             docker build -t dvga .
             docker run dvga
-            docker run -v $(pwd):/hawk:rw -t
-            -e API_KEY="${HAWK_API_KEY}"
-            stackhawk/hawkscan
+            docker run -v $(pwd):/hawk:rw -t -e API_KEY="${HAWK_API_KEY}" stackhawk/hawkscan
   displayName: Run HawkScan
   env:
     HAWK_API_KEY: $(hawk_api_key)
