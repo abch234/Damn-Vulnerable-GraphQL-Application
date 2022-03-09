@@ -4,8 +4,8 @@ pool:
 jobs:
   - job: Local_Scan
     steps:
-      - script: pip3 install -r requirements.txt
-                python3 app.py
+      - script: pip install -r requirements.txt
+                python app.py
         displayName: Start Nginx
       - script: >
           docker run -v $(pwd):/hawk:rw -t
