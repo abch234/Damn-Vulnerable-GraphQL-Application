@@ -4,9 +4,8 @@ pool:
 jobs:
   - job: Local_Scan
     steps:
-      - script: docker run --detach --publish 8080 nginx
-                docker pull dolevf/dvga 
-                docker run --detach --publish 8080 dolevf/dvga
+      - script: docker build dvga .
+      - script: docker run --detach --publish 8080 dvga
         displayName: Start Nginx
       - script: >
           docker run -v $(pwd):/hawk:rw -t
