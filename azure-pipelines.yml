@@ -1,7 +1,11 @@
 
-
 pool:
   vmImage: ubuntu-latest
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+
 
 - task: DockerInstaller@0
   inputs:
@@ -17,6 +21,6 @@ pool:
             docker run -v $(pwd):/hawk:rw -t
             -e API_KEY="${HAWK_API_KEY}"
             stackhawk/hawkscan
-        displayName: Run HawkScan
-        env:
-          HAWK_API_KEY: $(hawk_api_key)
+  displayName: Run HawkScan
+  env:
+    HAWK_API_KEY: $(hawk_api_key)
