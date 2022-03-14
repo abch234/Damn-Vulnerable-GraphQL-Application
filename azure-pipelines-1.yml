@@ -21,8 +21,8 @@ jobs:
   - job: Local_Scan
     steps:
     # Install Checkov
-    - bash: pip3 install -r $(System.DefaultWorkingDirectory)/requirements.txt
-    - bash: python3 app.py
+    - bash: docker build -t dvga $(System.DefaultWorkingDirectory)
+    - bash: docker run -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dvga
       displayName: 'Install checkov'
       name: 'install_checkov'
     - script: >
