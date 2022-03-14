@@ -23,12 +23,10 @@ jobs:
     # Install Checkov
     - bash: docker build -t dvga $(System.DefaultWorkingDirectory)
     - bash: docker run --detach -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dvga
+    - bash: sleep 10
+    - bash: docker ps -a
       displayName: 'Run DVGA app'
-    - bash:
-          sleep 10
-          docker run -v $(pwd):/hawk:rw -t
-          -e API_KEY="${HAWK_API_KEY}"
-          stackhawk/hawkscan
+    - bash: docker run -v $(pwd):/hawk:rw -t -e API_KEY="${HAWK_API_KEY}" stackhawk/hawkscan
       displayName: Run HawkScan
       env:
           HAWK_API_KEY: $(hawk_api_key)
