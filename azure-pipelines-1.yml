@@ -22,7 +22,7 @@ jobs:
     steps:
     # Install Checkov
     - bash: docker build -t dvga $(System.DefaultWorkingDirectory)
-    - bash: docker run --detach -t -p 5013:5013 -e WEB_HOST=0.0.0.0 dvga
+    - bash: docker run --detach -t -p 8080:8080 -e WEB_HOST=0.0.0.0 -e -e WEB_PORT=8080 dvga
     - bash: sleep 10
     - bash: docker ps -a
       displayName: 'Run DVGA app'
