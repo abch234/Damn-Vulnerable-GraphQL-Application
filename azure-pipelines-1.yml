@@ -28,6 +28,7 @@ jobs:
     - bash: docker ps -a
       displayName: 'Run DVGA app'
     - bash: export SERVER_PORT=5013  
+    - bash: docker ps -a
     - bash: docker run -v $(pwd):/hawk:rw -t -e API_KEY="${HAWK_API_KEY}" stackhawk/hawkscan
       displayName: Run HawkScan
       env:
