@@ -1,6 +1,6 @@
 app:
   applicationId: 3bcc060a-2c1c-4c6f-9699-57ab0c0f8436
-  host: http://0.0.0.0:8080
+  host: http://nginx_test
   env: Development
   graphqlConf:
       enabled: true
