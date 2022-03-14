@@ -21,6 +21,7 @@ jobs:
   - job: Local_Scan
     steps:
       - script: >
+          sleep 10
           docker run -v $(pwd):/hawk:rw -t
           -e API_KEY="${HAWK_API_KEY}"
           stackhawk/hawkscan
