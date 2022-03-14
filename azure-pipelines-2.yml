@@ -1,0 +1,15 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+  - job: Docker_Compose_Scan
+    steps:
+      - script: docker-compose up --abort-on-container-exit
+        displayName: Docker Compose Scan
+        env:
+          HAWK_API_KEY: $(hawk_api_key)
