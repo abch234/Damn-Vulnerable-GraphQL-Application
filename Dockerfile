@@ -25,4 +25,6 @@ COPY version.py /opt/dvga/
 RUN python setup.py
 
 EXPOSE 5013/tcp
+EXPOSE 8080/tcp
+EXPOSE 8080/udp
 CMD ["python3", "app.py"]
