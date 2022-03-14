@@ -10,21 +10,26 @@ pool:
   vmImage: ubuntu-latest
 
 
-steps:
+# steps:
+#     # Install Checkov
+#     - bash: pip3 install -r $(System.DefaultWorkingDirectory)/requirements.txt
+#     - bash: python3 app.py
+#       displayName: 'Install checkov'
+#       name: 'install_checkov'
+
+jobs:
+  - job: Local_Scan
+    steps:
     # Install Checkov
     - bash: pip3 install -r $(System.DefaultWorkingDirectory)/requirements.txt
     - bash: python3 app.py
       displayName: 'Install checkov'
       name: 'install_checkov'
-
-jobs:
-  - job: Local_Scan
-    steps:
-      - script: >
+    - script: >
           sleep 10
           docker run -v $(pwd):/hawk:rw -t
           -e API_KEY="${HAWK_API_KEY}"
           stackhawk/hawkscan
-        displayName: Run HawkScan
-        env:
+      displayName: Run HawkScan
+      env:
           HAWK_API_KEY: $(hawk_api_key)
