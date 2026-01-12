@@ -24,3 +24,4 @@ jobs:
     - name: Run Semgrep (Fail on Critical)
       run: semgrep ci --severity=ERROR 
           
+
