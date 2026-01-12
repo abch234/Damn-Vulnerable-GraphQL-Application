@@ -22,9 +22,7 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
-      - run: semgrep ci
-      
       - name: Run Semgrep (Fail on Critical, High)
-      - run: semgrep ci --severity=ERROR --severity=WARNING 
+        run: semgrep ci --severity=ERROR --severity=WARNING 
 
       
