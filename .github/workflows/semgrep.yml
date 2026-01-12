@@ -6,23 +6,18 @@ on:
     branches:
       - main
       - master
-    paths:
-      - .github/workflows/semgrep.yml
- 
+  
 jobs:
   semgrep:
-    name: semgrep/ci
+    name: semgrep/CLI
     runs-on: ubuntu-latest
     permissions:
       contents: read
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-    container:
-      image: semgrep/semgrep
-    if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
-      - name: Run Semgrep (Fail on Critical, High)
-        run: semgrep ci --severity=ERROR --severity=WARNING 
+      - name: Run Semgrep(Fail on Critical, High)
+        run: semgrep scan --severity=ERROR --severity=WARNING 
 
       
