@@ -21,6 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Semgrep(Fail on Critical, High)
-        run: semgrep scan --severity=ERROR --severity=WARNING 
+        run: semgrep scan --severity=ERROR --severity=WARNING -- error
 
       
