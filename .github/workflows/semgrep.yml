@@ -1,12 +1,16 @@
-name: Semgrep
 on:
   workflow_dispatch: {}
   pull_request: {}
   push:
     branches:
-      - main
-      - master
-  
+    - main
+    - master
+    paths:
+    - .github/workflows/semgrep.yml
+  schedule:
+  # random HH:MM to avoid a load spike on GitHub Actions at 00:00
+  - cron: 48 18 * * *
+name: Semgrep
 jobs:
   semgrep:
     name: semgrep/ci
@@ -15,13 +19,8 @@ jobs:
       contents: read
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-      
     container:
       image: semgrep/semgrep
     steps:
-      - uses: actions/checkout@v4
-      - name: Run Semgrep(Fail on Critical, High)
-        run: semgrep scan --severity=ERROR --severity=WARNING --error
-
-
-      
+    - uses: actions/checkout@v4
+    - run: semgrep ci
